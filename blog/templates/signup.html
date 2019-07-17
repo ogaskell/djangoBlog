@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h2> Sign Up </h2>
+
+<hr>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create Account</button>
+</form>
+
+{% if user.is_authenticated %}
+<script>
+
+    history.go(-1);
+
+</script>
+{% endif %}
+
+{% endblock %}

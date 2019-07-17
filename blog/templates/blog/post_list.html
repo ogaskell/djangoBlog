@@ -1,104 +1,79 @@
-<!DOCTYPE html>
+{% extends 'blog/base.html' %}
 
-<html>
+{% block content %}
 
-    <head>
-    
-        <title>Oliver Gaskell's Django Blog</title>
-    
-    </head>
-    
-    <body>
-    
-        <h1 id='title'>Oliver Gaskell's Django Blog</h1>
-        
         <div id='post-container'>
-            
-            <hr>
-            <hr>
-        
+
+            <h2> Blog Home </h2>
+
             {% for post in posts %}
-            
-                <table class='post'>
-                
-                    <tr class='post-header'>
-                    
-                        <td class='post-title-container'>  <h2 class='post-title'> {{ post.title }} </h2>  </td>
-                        <td class='post-date-container'>  <p class='post-date'> {{  post.published_date }} </p>  </td>
-                    
-                    </tr>
-                    
-                    <tr class='post-body'>
-                    
-                        <td colspan=2 class='post-content-container'>  <p class='post-content'> {{ post.text|linebreaksbr }} </p>  </td>
-                    
-                    </tr>
-                
-                </table>
-                
+
                 <hr>
-            
+
+                <table class='post'>
+
+                    <tr class='post-header'>
+
+                        <td class='post-upvote' rowspan=2> <button>^</button></td>
+
+                        <td class='post-title-container'>  <h2 class='post-title'> {{ post.title }} </h2> <p>By {{ post.author }}</p>  </td>
+                        <td class='post-date-container'>  <p class='post-date'> {{  post.published_date }} </p>  </td>
+
+                    </tr>
+
+                    <tr class='post-body'>
+
+                        <td colspan=2 class='post-content-container'>  <p class='post-content'> {{ post.text|linebreaksbr }} </p>  </td>
+
+                    </tr>
+
+                </table>
+
             {% endfor %}
-        
+
         </div>
-    
-    </body>
 
-</html>
+        <style>
 
-<style>
+        #post-container {
 
-html {
-    
-    font-family: sans-serif;
-    width: 100%;
-    height: 100%;
-    background-color: #268bd2;
-        
-}
+            width: 100%;
 
-body {
-    
-    max-width: 1500px;
-    width: 60vw;
-    height: 100%;
-    background-color: #fff;
-    padding: 30px;
-    margin: auto;
-    
-}
+        }
 
-#post-container {
-    
-    width: 100%;
-    
-}
+        .post {
 
-.post {
-    
-    width: 100%;
-    padding: 20px;
-    border-collapse:collapse;
-    
-}
+            width: 100%;
+            padding: 20px;
+            border-collapse:collapse;
 
-.post tr td {
-    
-    padding-left: 15px;
-    padding-right: 15px;
-    
-}
+        }
 
-.post-date-container {
-    
-    text-align: right;
-    
-}
+        .post tr td {
 
-.post-header {
-    
-    border-bottom: 1px solid #aaa;
-    
-}
+            padding-left: 15px;
+            padding-right: 15px;
 
-</style>
+        }
+
+        .post-date-container {
+
+            text-align: right;
+
+        }
+
+        .post-header {
+
+            border-bottom: 1px solid #aaa;
+
+        }
+
+        .post-upvote {
+
+            padding: 0;
+
+        }
+
+        </style>
+
+{% endblock %}

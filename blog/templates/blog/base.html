@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Oliver Gaskell's Django Blog</title>
+
+    </head>
+
+    <body>
+
+        <table width=100%> <tr>
+
+            <td> <h1 id='title'>Oliver Gaskell's Django Blog</h1> </td>
+            {% if user.is_authenticated %}
+            <td> <p> Logged in as {{ user.username }}. <a href="{% url 'logout' %}"><button class="button">Logout</button></a> </p> </td>
+            {% else %}
+            <td> <a href='{% url 'login' %}'>Login</a>  |  <a href='{% url 'signup' %}'>Sign Up</a> </td>
+            {% endif %}
+
+        </tr> </table>
+
+        {% block content %}
+        {% endblock %}
+
+        <hr>
+
+        <p>By Oliver Gaskell, 2019</p>
+        <p>Written in Python, Django and HTML/CSS</p>
+
+    </body>
+
+</html>
+
+<style>
+
+html {
+
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://wallpapersite.com/images/wallpapers/code-3769x2513-program-programming-language-coding-java-4k-4192.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+body {
+
+    max-width: 1500px;
+    width: 60vw;
+    background-color: #ffffff;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 0px;
+}
+
+</style>
