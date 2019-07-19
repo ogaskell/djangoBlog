@@ -9,6 +9,8 @@ from .forms import LikeForm, CommentForm
 from .models import Like, Comment
 from django.core.exceptions import ObjectDoesNotExist
 import datetime
+from django.contrib import messages
+
 
 # Create your views here.
 def post_list(request):
@@ -60,6 +62,9 @@ def store_like(request):
             like.delete()
         except ObjectDoesNotExist:
             form.save()
+        except ValueError:
+            messages.add_message(request, messages.ERROR, 'You cannot like a post if you are not signed in.')
+            return HttpResponseRedirect('/')
 
     return HttpResponseRedirect('/')
 
@@ -69,6 +74,9 @@ def store_comment(request):
 
         form.date = datetime.datetime.now()
 
-        form.save()
+        try:
+            form.save()
+        except ValueError:
+            messages.add_message(request, messages.ERROR, 'You cannot add a comment if you are not signed in.')
 
     return HttpResponseRedirect('/')

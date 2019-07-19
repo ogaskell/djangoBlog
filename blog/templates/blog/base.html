@@ -35,6 +35,14 @@
 
         </table>
 
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="message-{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
         {% block content %}
         {% endblock %}
 
@@ -75,6 +83,10 @@ body {
 
 button {
     padding: 0px;
+}
+
+.message-error {
+    color: red;
 }
 
 </style>
