@@ -27,19 +27,21 @@
 
                     <tr>
 
-                        <td class='post-like-container'>
+                        <td class='post-like-container' colspan="2">
 
-                            <form action="/like/" method="post">
+                            <form action="/like/" method="post" class="post-like-item">
 
                                 {% csrf_token %}
 
                                 <input type="hidden" class="post-like-post-id" name="post" value="{{ post.id }}">
                                 <input type="hidden" class="post-like-user-id" name="user" value="{{ user.id }}">
-                                <input type="submit" class="post-like" value="👍">
+                                <input type="submit" class="post-like-button" value="👍 &nbsp; {{ post.likes }}">
 
                             </form>
 
-                            <h4> {{ post.likes }} </h4>
+                            &nbsp; &nbsp; &nbsp; &nbsp;
+
+                            <a href="/post?id={{ post.id }}"> <button class="post-like-item post-like-button"> 💬 &nbsp; {{ post.comments }} </button> </a>
 
                         </td>
 
@@ -91,8 +93,15 @@
             padding: 0;
         }
 
-        .post-like {
+        .post-like-item {
 
+            display: inline-block;
+
+        }
+
+        .post-like-button {
+
+            border: 0;
             font-size: 1.5em;
 
         }

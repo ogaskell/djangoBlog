@@ -1,0 +1,204 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+        <div id='post-container'>
+
+            <table class='post'>
+
+                <tr class='post-header'>
+
+                    <td class='post-title-container'>  <h2 class='post-title'> {{ post.title }} </h2> <p>By {{ post.author }}</p>  </td>
+                    <td class='post-date-container'>  <p class='post-date'> {{  post.date }} </p>  </td>
+
+                </tr>
+
+                <tr class='post-body'>
+
+                    <td colspan=2 class='post-content-container'>  <p class='post-content'> {{ post.text|linebreaksbr }} </p>  </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class='post-like-container' colspan=2>
+
+                        <form action="/like/" method="post">
+
+                            {% csrf_token %}
+
+                            <input type="hidden" class="post-like-post-id" name="post" value="{{ post.id }}">
+                            <input type="hidden" class="post-like-user-id" name="user" value="{{ user.id }}">
+                            <input type="submit" class="post-like" value="👍 &nbsp; {{ post.likes }}">
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td colspan=2>
+
+                        <h2>Comments | {{ post.comments }}</h2>
+
+                        <hr>
+
+                        <table class="post-comments-container">
+
+                            {% for comment in comments %}
+                            <tr>
+
+                                <td class="comment-user">
+
+                                    <h3>{{ comment.user }}</h3>
+
+                                </td>
+
+                                <td class="comment-date">
+
+                                    <p>{{ comment.date }}</p>
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td colspan=2 class="comment-text">
+
+                                    <p>{{ comment.text }}</p>
+
+                                    <hr>
+
+                                </td>
+
+                            </tr>
+
+
+                            {% endfor %}
+
+
+
+                            <tr>
+
+                                <form action="/comment/" method="post">
+
+                                    {% csrf_token %}
+
+                                    <input type="hidden" class="comment-post-id" name="post" value="{{ post.id }}">
+                                    <input type="hidden" class="comment-user-id" name="user" value="{{ user.id }}">
+
+                                    <td class="comment-text-field-container">
+
+                                        <input type="text" class="comment-text-field" name="text">
+
+                                    </td>
+
+                                    <td class="comment-submit-container">
+
+                                        <input type="submit" class="comment-submit" value="Post">
+
+                                    </td>
+
+                                </form>
+
+                            </tr>
+
+                        </table>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <style>
+
+        #post-container {
+
+            width: 100%;
+
+        }
+
+        .post {
+
+            width: 100%;
+            padding: 20px;
+            border-collapse:collapse;
+
+        }
+
+        .post tr td {
+
+            padding-left: 15px;
+            padding-right: 15px;
+
+        }
+
+        .post-date-container {
+
+            text-align: right;
+
+        }
+
+        .post-header {
+
+            border-bottom: 1px solid #aaa;
+
+        }
+
+        .post-like-container {
+
+            padding: 0;
+        }
+
+        .post-like {
+
+            border: 0;
+            font-size: 1.5em;
+
+        }
+
+        .post-comments-container {
+
+            width: 100%;
+
+        }
+
+        .comment-user {
+
+            width: 100%;
+
+        }
+
+        .comment-date {
+
+            white-space: nowrap;
+
+        }
+
+        .comment-text-field {
+
+            width: 100%;
+
+        }
+
+        .comment-submit-container {
+
+            text-align: center;
+
+        }
+
+        </style>
+
+        <script>
+
+
+
+        </script>
+
+{% endblock %}
