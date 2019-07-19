@@ -5,5 +5,6 @@ from . import views
 
 urlpatterns = [
     path('',views.post_list, name='post_list'),
-    path('signup/', views.SignUp.as_view(), name='signup')
+    path('signup/', views.SignUp.as_view(), name='signup'),
+    path('like/', views.store_like, name="like")
 ]

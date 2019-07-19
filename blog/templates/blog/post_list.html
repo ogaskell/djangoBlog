@@ -15,13 +15,33 @@
                     <tr class='post-header'>
 
                         <td class='post-title-container'>  <h2 class='post-title'> {{ post.title }} </h2> <p>By {{ post.author }}</p>  </td>
-                        <td class='post-date-container'>  <p class='post-date'> {{  post.published_date }} </p>  </td>
+                        <td class='post-date-container'>  <p class='post-date'> {{  post.date }} </p>  </td>
 
                     </tr>
 
                     <tr class='post-body'>
 
-                        <td colspan=2 class='post-content-container'>  <p class='post-content'> {{ post.text|linebreaksbr }} </p>  </td>
+                        <td colspan=3 class='post-content-container'>  <p class='post-content'> {{ post.text|linebreaksbr }} </p>  </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class='post-like-container'>
+
+                            <form action="/like/" method="post">
+
+                                {% csrf_token %}
+
+                                <input type="hidden" class="post-like-post-id" name="post" value="{{ post.id }}">
+                                <input type="hidden" class="post-like-user-id" name="user" value="{{ user.id }}">
+                                <input type="submit" class="post-like" value="👍">
+
+                            </form>
+
+                            <h4> {{ post.likes }} </h4>
+
+                        </td>
 
                     </tr>
 
@@ -66,12 +86,23 @@
 
         }
 
-        .post-upvote {
+        .post-like-container {
 
             padding: 0;
+        }
+
+        .post-like {
+
+            font-size: 1.5em;
 
         }
 
         </style>
+
+        <script>
+
+
+
+        </script>
 
 {% endblock %}
