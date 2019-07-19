@@ -26,7 +26,15 @@ SECRET_KEY = 're2hot45d=25ci2ygj*g)mw09*)90fu^ucv6s3^&8fv!ph0&-='
 DEBUG = False
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.pythonanywhere.com',"192.168.0.243"]
+=======
+ALLOWED_HOSTS = ['127.0.0.1','localhost','.pythonanywhere.com','35.177.238.168']
+>>>>>>> Stashed changes
+=======
+ALLOWED_HOSTS = ['127.0.0.1','localhost','.pythonanywhere.com','35.177.238.168']
+>>>>>>> Stashed changes
 =======
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.pythonanywhere.com','35.177.238.168']
 >>>>>>> Stashed changes
